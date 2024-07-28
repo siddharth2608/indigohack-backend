@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="register-container">
+    <h2 class="reg_h2">Registration Form</h2>
+    <form action="" method="post">{% csrf_token %}
+        <label for="reg_username">User Name:</label>
+        <input type="text" id="reg_username" name="username" required>
+
+        <label for="reg_firstname">First Name:</label>
+        <input type="text" id="reg_firstname" name="firstname" required>
+
+        <label for="reg_lastname">Last Name:</label>
+        <input type="text" id="reg_lastname" name="lastname" required>
+
+        <label for="reg_email">Email:</label>
+        <input type="text" id="reg_email" name="email" required>
+
+        <label for="reg_phone">Phone No:</label>
+        <input type="text" id="reg_phone" name="phone" required>
+
+        <label for="reg_password">Password:</label>
+        <input type="password" id="reg_password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="flightsearch-container">
+        <h1>Flight Status Search</h1>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="tab1">Search by Airport and Date</button>
+            <button class="tab-button" data-tab="tab2">Search by Airline and Flight Number</button>
+        </div>
+        <div class="tab-content">
+            <div id="tab1" class="tab active">
+                <form id="search-by-airport-date">
+                    <label for="departure-airport">Departure Airport:</label>
+                    <input type="text" id="departure-airport" name="departure_airport" required>
+                    <label for="arrival-airport">Arrival Airport:</label>
+                    <input type="text" id="arrival-airport" name="arrival_airport" required>
+                    <label for="departure-date">Departure Date:</label>
+                    <input type="date" id="departure-date" name="departure_date" required>
+                    <button type="submit">Search</button>
+                </form>
+                <div id="results1"></div>
+            </div>
+            <div id="tab2" class="tab">
+                <form id="search-by-airline-flight">
+                    <label for="airline-name">Airline Name:</label>
+                    <select id="airline-name" name="airline_name" required>
+                        <!-- Options will be filled dynamically from the database -->
+                    </select>
+                    <label for="flight-number">Flight Number:</label>
+                    <input type="text" id="flight-number" name="flight_number" required>
+                    <button type="submit">Search</button>
+                </form>
+                <div id="results2"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
