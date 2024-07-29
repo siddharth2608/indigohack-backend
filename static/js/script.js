@@ -65,12 +65,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const flightElement = document.createElement('div');
             flightElement.classList.add('flight');
             flightElement.innerHTML = `
-                <p>Flight Number: ${flight.flight_number}</p>
+                <p>Airline : ${flight.airline}</p>
+                <p>Flight Number: ${flight.flightnumber}</p>
+                <p>Departure: ${flight.departure}</p>
+                <p>Arrival: ${flight.arrival}</p>
+                <p>Gate Number: ${flight.gatenumber}</p>
                 <p>Status: ${flight.status}</p>
-                <p>Gate Number: ${flight.gate_number}</p>
-                <p>Departure Time: ${new Date(flight.departure_time).toLocaleString()}</p>
+                <p>Departure Date: ${flight.departuredate}</p>
+                <p>Arrival Date: ${flight.arrivaldate}</p>
+                ${flight.subscribe_status == '1' ? 
+                        `<button class="subscribe-button" data-flightnumber="${flight.flightnumber}" data-airline="${flight.airline}" data-action="0" onclick="subscribeToFlight(this)">Unsubscribe</button>` : 
+                        `<button class="subscribe-button" data-flightnumber="${flight.flightnumber}" data-airline="${flight.airline}" data-action="1" onclick="subscribeToFlight(this)">Subscribe</button>`
+                    }
             `;
             resultsContainer.appendChild(flightElement);
         });
     }
 });
+
+function subscribeToFlight(button) {
+    const flightNumber = button.getAttribute('data-flightnumber');
+    const airline = button.getAttribute('data-airline');
+    const action = button.getAttribute('data-action');
+
+    fetch('/flights/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ flight_number: flightNumber, airline_name: airline, action: action })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            // Toggle button text and action
+            if (action == 1) {
+                button.textContent = 'Unsubscribe';
+                button.setAttribute('data-action', '0');
+            } else {
+                button.textContent = 'Subscribe';
+                button.setAttribute('data-action', '1');
+            }
+        } else {
+            console.error('Error subscribing/unsubscribing:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}

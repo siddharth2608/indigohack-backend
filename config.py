@@ -1,4 +1,5 @@
 from ConnectionUtils.dbconnections import PostgresConnection
+import redis
 
 class Config:
 
@@ -11,3 +12,4 @@ class Config:
     }
 
     POSTGRESSQL_CONN = PostgresConnection(POSTGRES_CONFIG)
+    REDIS_CONN = redis.StrictRedis(host='localhost', port=6379, db=0)

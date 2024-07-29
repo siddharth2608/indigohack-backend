@@ -8,5 +8,7 @@ urlpatterns = [
 	
 	path('search',views.FlightSearch, name='homepage'),
 	path('airlinesList',views.GetAirLinesList, name='airlinesList'),
-	path('searchflightdata/', views.FlightSearchResult, name='flightsearchdata')
+	path('searchflightdata/', views.FlightSearchResult, name='flightsearchdata'),
+	path('subscribe/', views.SubscribeToNotification, name='subscribe'),
+	path('getallflightsdata/', views.GetAllFlighstData, name='fetchflightdata')
 ]

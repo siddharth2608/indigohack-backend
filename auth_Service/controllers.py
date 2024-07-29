@@ -16,3 +16,9 @@ class AuthController:
 		query = '''select * from usermaster where email = '{email}' and password = '{password}' '''.format(**login_data)
 		result = self.db_conn.query_db_one(query)
 		return result
+
+	def get_users_subscribed_to_notified(self,airline,flightnumber):
+		query = '''select * from subscriptions subs inner join usermaster usm on subs.user_id=usm.id
+					where subs.sub_airline=%s and subs.sub_flightnumber=%s '''
+		result = self.db_conn.query_db(query, (airline, flightnumber))
+		return result
