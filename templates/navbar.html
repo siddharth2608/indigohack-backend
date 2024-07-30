@@ -1,11 +1,11 @@
+<nav class="navbar">
+    <ul class="navbar-list">
+        <li><a class="" href="{% url 'flightapp:homepage' %}">Home</a></li>
+        {% if userid %}
+            <li><a class="" href="{% url 'authapp:logout_user' %}">Logout</a></li>
+        {% else %}
+            <li><a class="" href="{% url 'authapp:login_user' %}">SignIn/Signup</a></li>
+        {% endif %}
+    </ul>
+</nav>
 
-<!-- <ul>
-  <li><a href="{% url 'prodapp:home' %}">Home</a></li>  
-  {% if userid %}
-    <li style="float:right"><a class="active" href="{% url 'authapp:logout_user' %}">Logout</a></li>
-    <li style="float:right"><a class="active" href="{% url 'authapp:update_user' %}">My Account</a></li>
-  {% else %}
-    <li style="float:right"><a class="active" href="{% url 'authapp:login_user' %}">SignIn/Signup</a></li>
-    {% endif %}
-  
-</ul> -->

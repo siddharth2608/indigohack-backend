@@ -63,20 +63,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         data.forEach(flight => {
             const flightElement = document.createElement('div');
-            flightElement.classList.add('flight');
+            flightElement.classList.add('flight-card');
             flightElement.innerHTML = `
-                <p>Airline : ${flight.airline}</p>
-                <p>Flight Number: ${flight.flightnumber}</p>
-                <p>Departure: ${flight.departure}</p>
-                <p>Arrival: ${flight.arrival}</p>
-                <p>Gate Number: ${flight.gatenumber}</p>
-                <p>Status: ${flight.status}</p>
-                <p>Departure Date: ${flight.departuredate}</p>
-                <p>Arrival Date: ${flight.arrivaldate}</p>
-                ${flight.subscribe_status == '1' ? 
-                        `<button class="subscribe-button" data-flightnumber="${flight.flightnumber}" data-airline="${flight.airline}" data-action="0" onclick="subscribeToFlight(this)">Unsubscribe</button>` : 
-                        `<button class="subscribe-button" data-flightnumber="${flight.flightnumber}" data-airline="${flight.airline}" data-action="1" onclick="subscribeToFlight(this)">Subscribe</button>`
-                    }
+                <div class="flight-card-header">
+                    <h2>${flight.airline} - ${flight.flightnumber}</h2>
+                    <p>${flight.departure} to ${flight.arrival}</p>
+                </div>
+                <div class="flight-card-body">
+                    <p><strong>Gate Number:</strong> ${flight.gatenumber}</p>
+                    <p><strong>Status:</strong> ${flight.status}</p>
+                    <p><strong>Departure Date:</strong> ${flight.departuredate}</p>
+                    <p><strong>Arrival Date:</strong> ${flight.arrivaldate}</p>
+                </div>
+                <div class="flight-card-footer">
+            ${flight.userid ? 
+                (flight.subscribe_status == '1' ?
+                    `<button class="subscribe-button unsubscribe-button" data-flightnumber="${flight.flightnumber}" data-airline="${flight.airline}" data-action="0" onclick="subscribeToFlight(this)">Unsubscribe</button>` : 
+                    `<button class="subscribe-button subscribe-button" data-flightnumber="${flight.flightnumber}" data-airline="${flight.airline}" data-action="1" onclick="subscribeToFlight(this)">Subscribe</button>`
+                ) : 
+                `<p class="no-subscription">Login to subscribe</p>`
+            }
+        </div>
             `;
             resultsContainer.appendChild(flightElement);
         });

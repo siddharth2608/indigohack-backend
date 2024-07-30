@@ -31,7 +31,7 @@ def RegisterUser(request):
 
 		AuthController().save_registration_form(register_data)
 		
-		return redirect('authapp:register_user')
+		return redirect('authapp:login_user')
 
 
 def LoginUser(request):

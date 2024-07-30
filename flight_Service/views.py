@@ -9,7 +9,8 @@ def FlightSearch(request):
 
 	if request.method=="GET":
 		context={
-			"title":"Flight Search - Home"
+			"title":"Flight Search - Home",
+			"userid": request.COOKIES.get('userid')
 		}
 		return render(request,'flight/search.html',context)
 
@@ -45,6 +46,8 @@ def FlightSearchResult(request):
 
 		
 		flight_data = FlightController().get_flight_data(search_param_data)
+		for flight in flight_data:
+			flight['userid'] = user_id
 		print(flight_data)
 		return JsonResponse(flight_data, safe=False)
 		
@@ -83,5 +86,5 @@ def GetAllFlighstData(request):
 	if request.method=="GET":
 
 		flight_data = FlightController().fetch_flight_data()
-		
+
 		return JsonResponse(list(flight_data), safe=False)
