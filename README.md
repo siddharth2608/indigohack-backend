@@ -94,6 +94,13 @@ celery -A TrackYourFlight_App beat -l info --scheduler django_celery_beat.schedu
 
 - ##### Receive Notifications: Stay up-to-date with the latest changes in flight statuses, including delays, cancellations, and gate changes, delivered straight to your inbox..
 
+#### Here is the Search Page
+![airportnotify](https://github.com/user-attachments/assets/fd941572-a792-4959-b6ac-51888c0e2e0e)
+
+#### Here is the example of notification mail
+![notify2](https://github.com/user-attachments/assets/456bcce4-0bc4-4c71-a223-c45dbd63b977)
+
+
 ## Fun Fact
 ##### Did you know? The system’s email notification feature is powered by a custom-built email worker using RabbitMQ, which ensures that flight updates are delivered to you with minimal delay.
 
