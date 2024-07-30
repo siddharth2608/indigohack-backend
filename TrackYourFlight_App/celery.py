@@ -19,7 +19,7 @@ app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
     
-    'fetch-flight-data-every-3-minutes':{
+    'fetch-flight-data-every-1-minutes':{
         'task': 'send_notification',
         'schedule': crontab(minute='*/1')
     }

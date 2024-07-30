@@ -24,3 +24,8 @@ class Config:
 
 
     RABBITMQ_CONN = create_rabbitmq_connection()
+
+    MAIL_CONFIG = {
+        'gmail_user':'example@gmail.com',
+        'gmail_password' : 'app_password'
+    }

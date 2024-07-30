@@ -20,8 +20,8 @@ RABBITMQ_CONN = Config.RABBITMQ_CONN
 
 def send_mail(email,body):
 
-	gmail_user = 'siddharthsrivastav987@gmail.com'
-	gmail_password = 'exnlnujdcwjetcpm'
+	gmail_user = Config.MAIL_CONFIG.get('gmail_user')
+	gmail_password = Config.MAIL_CONFIG.get('gmail_password')
 
 	sent_from = 'TrackYourFlight'
 	to = [email]
