@@ -83,4 +83,5 @@ def GetAllFlighstData(request):
 	if request.method=="GET":
 
 		flight_data = FlightController().fetch_flight_data()
-		return JsonResponse(list(flights), safe=False)
+		
+		return JsonResponse(list(flight_data), safe=False)

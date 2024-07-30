@@ -1,5 +1,6 @@
 from ConnectionUtils.dbconnections import PostgresConnection
 import redis
+import pika
 
 class Config:
 
@@ -13,3 +14,13 @@ class Config:
 
     POSTGRESSQL_CONN = PostgresConnection(POSTGRES_CONFIG)
     REDIS_CONN = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+
+    def create_rabbitmq_connection():
+        connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+        channel = connection.channel()
+        channel.queue_declare(queue='flight_notifications')
+        return channel
+
+
+    RABBITMQ_CONN = create_rabbitmq_connection()
